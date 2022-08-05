@@ -60,9 +60,18 @@ class SiswaContoller extends Controller
      * @param  \App\Models\Siswa  $siswa
      * @return \Illuminate\Http\Response
      */
-    public function show(Siswa $siswa)
+    public function show($nis)
     {
-        //
+        $getSiswa = Siswa::all();
+
+        $siswa = Siswa::where('nis', $nis)->first();
+        if (!$siswa) {
+            return to_route('siswa')->with('error', 'data tidak ditemukan');
+        }
+        return view('siswa.show', [
+            "siswa" => $siswa,
+            "getSiswa" => $getSiswa,
+        ]);
     }
 
     /**
@@ -83,9 +92,22 @@ class SiswaContoller extends Controller
      * @param  \App\Models\Siswa  $siswa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Siswa $siswa)
+    public function update(Request $request)
     {
-        //
+        // dd($request->all());
+        $validatedData = $request->validate([
+            'nis' => 'required|string',
+            'nama' => 'required|string',
+            'kelamin' => 'required|string',
+        ]);
+
+        $siswa = Siswa::where('nis', $request->nis);
+        if (!$siswa) {
+            return to_route('siswa')->with('error', 'data tidak ditemukan');
+        }
+        $siswa->update($validatedData);
+
+        return to_route('siswa')->with('success', 'edit data berhasil');
     }
 
     /**
@@ -94,9 +116,9 @@ class SiswaContoller extends Controller
      * @param  \App\Models\Siswa  $siswa
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($nis)
     {
-        $siswa = Siswa::find($id);
+        $siswa = Siswa::where('nis', $nis);
         $siswa->delete();
 
         return to_route('siswa');

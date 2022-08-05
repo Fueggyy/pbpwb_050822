@@ -133,6 +133,8 @@
                       <tr>
                         <th>NIS</th>
                         <th>NAMA</th>
+                        <th>KELAMIN</th>
+                        <th>ACTIONS</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -140,6 +142,17 @@
                       <tr>
                         <td>{{$i->nis}}</td>
                         <td>{{$i->nama}}</td>
+                        <td>{{$i->kelamin}}</td>
+                        <td>
+                          <div class="row justify-content-end">
+                            <div class="col-6">
+                              <a href="{{route ('siswa.hapus', $i->nis)}}" class="btn btn-danger">Hapus</a>
+                            </div>
+                            <div class="col-6">
+                              <a href="{{route ('siswa.show', $i->nis)}}" class="btn btn-warning">Edit</a>
+                            </div>
+                          </div>
+                        </td>
                       </tr>
                       @endforeach
                     </tbody>

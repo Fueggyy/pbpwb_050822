@@ -29,13 +29,15 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('siswa', function (){
+Route::get('siswa', function () {
     return view('siswa.index');
 });
 
 Route::get('siswa', [SiswaContoller::class, 'index'])->name('siswa');
 Route::get('siswa/tambah', [SiswaContoller::class, 'create'])->name('siswa.tambah');
-// Route::get('siswa/{id}', [SiswaContoller::class, 'destroy'])->name('siswa.delete');
+Route::get('siswa/{nis}', [SiswaContoller::class, 'destroy'])->name('siswa.hapus');
+Route::get('siswa/show/{nis}', [SiswaContoller::class, 'show'])->name('siswa.show');
 Route::post('siswa/tambah/save', [SiswaContoller::class, 'store'])->name('siswa.tambah.save');
+Route::post('siswa/edit', [SiswaContoller::class, 'update'])->name('siswa.edit');
 
 Route::get('pegawai', [PegawaiController::class, 'index'])->name('pegawai');
