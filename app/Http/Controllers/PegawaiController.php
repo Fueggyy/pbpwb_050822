@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Siswa;
+use App\Models\Pegawai;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class SiswaContoller extends Controller
+class PegawaiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +14,10 @@ class SiswaContoller extends Controller
      */
     public function index()
     {
-        $siswa = Siswa::get();
+        $pegawai = Pegawai::get();
 
-        return view('siswa.index', [
-            "siswa" => $siswa,
+        return view('pegawai.index', [
+            "pegawai" => $pegawai,
         ]);
     }
 
@@ -29,7 +28,7 @@ class SiswaContoller extends Controller
      */
     public function create()
     {
-        return view('siswa.tambah');
+        //
     }
 
     /**
@@ -40,27 +39,16 @@ class SiswaContoller extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        $validatedData = $request->validate([
-            'nis' => 'required|string',
-            'nama' => 'required|string',
-            'tahunmasuk' => 'required|string',
-            'idangkatan' => 'required|string',
-            'idkelas' => 'required|string',
-        ]);
-
-        Siswa::create($validatedData);
-
-        return to_route('siswa')->with('success', 'tambah data berhasil');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Siswa  $siswa
+     * @param  \App\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function show(Siswa $siswa)
+    public function show(Pegawai $pegawai)
     {
         //
     }
@@ -68,10 +56,10 @@ class SiswaContoller extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Siswa  $siswa
+     * @param  \App\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function edit(Siswa $siswa)
+    public function edit(Pegawai $pegawai)
     {
         //
     }
@@ -80,10 +68,10 @@ class SiswaContoller extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Siswa  $siswa
+     * @param  \App\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Siswa $siswa)
+    public function update(Request $request, Pegawai $pegawai)
     {
         //
     }
@@ -91,14 +79,11 @@ class SiswaContoller extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Siswa  $siswa
+     * @param  \App\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Pegawai $pegawai)
     {
-        $siswa = Siswa::find($id);
-        $siswa->delete();
-
-        return to_route('siswa');
+        //
     }
 }

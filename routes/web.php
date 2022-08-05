@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiswaContoller;
+use App\Http\Controllers\PegawaiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +34,8 @@ Route::get('siswa', function (){
 });
 
 Route::get('siswa', [SiswaContoller::class, 'index'])->name('siswa');
+Route::get('siswa/tambah', [SiswaContoller::class, 'create'])->name('siswa.tambah');
+// Route::get('siswa/{id}', [SiswaContoller::class, 'destroy'])->name('siswa.delete');
+Route::post('siswa/tambah/save', [SiswaContoller::class, 'store'])->name('siswa.tambah.save');
+
+Route::get('pegawai', [PegawaiController::class, 'index'])->name('pegawai');
