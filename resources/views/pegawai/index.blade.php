@@ -10,9 +10,6 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
-  <script type="text/javascript" href="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script type="text/javascript" href="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-  <script type="text/javascript" href="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
 
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
@@ -79,13 +76,13 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{route ('siswa')}}" class="nav-link active">
+                  <a href="{{route ('siswa')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Siswa</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{route ('pegawai')}}" class="nav-link">
+                  <a href="{{route ('pegawai')}}" class="nav-link active">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Pegawai</p>
                   </a>
@@ -112,7 +109,7 @@
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">Siswa</li>
+                <li class="breadcrumb-item active">Pegawai</li>
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -126,19 +123,19 @@
           <div class="row justify-content-center">
             <div class="col-md-8 w-100">
               <div class="card">
+
                 <div class="card-body">
-                  <!-- <a href="{{route ('siswa.tambah') }}" class="btn btn-success mb-4">Tambah Data</a> -->
                   <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                       <tr>
-                        <th>NIS</th>
+                        <th>NIP</th>
                         <th>NAMA</th>
                       </tr>
                     </thead>
                     <tbody>
-                      @foreach ($siswa as $i)
+                      @foreach ($pegawai as $i)
                       <tr>
-                        <td>{{$i->nis}}</td>
+                        <td>{{$i->nip}}</td>
                         <td>{{$i->nama}}</td>
                       </tr>
                       @endforeach
