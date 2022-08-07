@@ -127,7 +127,7 @@
             <div class="col-md-8 w-100">
               <div class="card">
                 <div class="card-body">
-                  <!-- <a href="{{route ('siswa.tambah') }}" class="btn btn-success mb-4">Tambah Data</a> -->
+                  <a href="{{route ('siswa.tambah') }}" class="btn btn-success mb-4">Tambah Data</a>
                   <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                       <tr>

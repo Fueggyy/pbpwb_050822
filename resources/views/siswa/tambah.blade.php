@@ -149,27 +149,15 @@
                                         </div>
 
                                         <div class="row mb-3">
-                                            <label for="tahunmasuk" class="col-md-4 col-form-label text-md-end">{{ __('Tahun Masuk') }}</label>
+                                            <label for="kelamin" class="col-md-4 col-form-label text-md-end">{{ __('Jenis Kelamin') }}</label>
 
                                             <div class="col-md-6">
-                                                <input id="tahunmasuk" type="text" class="form-control" name="tahunmasuk" required>
+                                                <select name="kelamin" id="kelamin" class="form-control">
+                                                    <option value="L">{{ __('L') }}</option>
+                                                    <option value="P">{{ __('P') }}</option>
+                                                </select>
                                             </div>
-                                        </div>
 
-                                        <div class="row mb-3">
-                                            <label for="idangkatan" class="col-md-4 col-form-label text-md-end">{{ __('ID ANGKATAN') }}</label>
-
-                                            <div class="col-md-6">
-                                                <input id="idangkatan" type="text" class="form-control" name="idangkatan" required>
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <label for="idkelas" class="col-md-4 col-form-label text-md-end">{{ __('ID KELAS') }}</label>
-
-                                            <div class="col-md-6">
-                                                <input id="idkelas" type="text" class="form-control" name="idkelas" required>
-                                            </div>
                                         </div>
 
                                         <div class="row mb-0">
@@ -180,6 +168,7 @@
 
                                             </div>
                                         </div>
+
                                     </form>
                                 </div>
                             </div>

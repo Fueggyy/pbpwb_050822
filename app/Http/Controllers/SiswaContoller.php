@@ -44,9 +44,7 @@ class SiswaContoller extends Controller
         $validatedData = $request->validate([
             'nis' => 'required|string',
             'nama' => 'required|string',
-            'tahunmasuk' => 'required|string',
-            'idangkatan' => 'required|string',
-            'idkelas' => 'required|string',
+            'kelamin' => 'required|string'
         ]);
 
         Siswa::create($validatedData);
@@ -63,8 +61,8 @@ class SiswaContoller extends Controller
     public function show($nis)
     {
         $getSiswa = Siswa::all();
-
         $siswa = Siswa::where('nis', $nis)->first();
+        
         if (!$siswa) {
             return to_route('siswa')->with('error', 'data tidak ditemukan');
         }

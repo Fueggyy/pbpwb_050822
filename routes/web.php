@@ -29,15 +29,17 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('siswa', function () {
-    return view('siswa.index');
+Route::controller(SiswaContoller::class)->group(function () {
+    Route::get('siswa', 'index')->name('siswa');
+    Route::get('siswa/tambah', 'create')->name('siswa.tambah');
+    Route::get('siswa/{nis}', 'destroy')->name('siswa.hapus');
+    Route::get('siswa/show/{nis}', 'show')->name('siswa.show');
+    Route::post('siswa/tambah/save', 'store')->name('siswa.tambah.save');
+    Route::post('siswa/edit', 'update')->name('siswa.edit');
 });
 
-Route::get('siswa', [SiswaContoller::class, 'index'])->name('siswa');
-Route::get('siswa/tambah', [SiswaContoller::class, 'create'])->name('siswa.tambah');
-Route::get('siswa/{nis}', [SiswaContoller::class, 'destroy'])->name('siswa.hapus');
-Route::get('siswa/show/{nis}', [SiswaContoller::class, 'show'])->name('siswa.show');
-Route::post('siswa/tambah/save', [SiswaContoller::class, 'store'])->name('siswa.tambah.save');
-Route::post('siswa/edit', [SiswaContoller::class, 'update'])->name('siswa.edit');
+Route::controller(PegawaiController::class)->group(function () {
+    Route::get('pegawai', 'index')->name('pegawai');
+    Route::get('pegawai/tambah', 'create')->name('pegawai.tambah');
+});
 
-Route::get('pegawai', [PegawaiController::class, 'index'])->name('pegawai');

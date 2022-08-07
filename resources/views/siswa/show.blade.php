@@ -136,7 +136,7 @@
                                             <label for="nis" class="col-md-4 col-form-label text-md-end">{{ __('NIS') }}</label>
 
                                             <div class="col-md-6">
-                                                <input id="nis" type="nis" class="form-control" name="nis" value="{{ $siswa->nis }}" required readonly>
+                                                <input id="nis" type="nis" class="form-control" name="nis" value="{{ $siswa->nis }}" required>
                                             </div>
                                         </div>
 

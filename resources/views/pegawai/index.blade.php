@@ -125,6 +125,7 @@
               <div class="card">
 
                 <div class="card-body">
+                  <a href="{{route ('pegawai.tambah') }}" class="btn btn-success mb-4">Tambah Data</a>
                   <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                       <tr>

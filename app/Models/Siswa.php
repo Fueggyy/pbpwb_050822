@@ -16,8 +16,5 @@ class Siswa extends Model
         'nis',
         'nama',
         'kelamin',
-        'tahunmasuk',
-        'idangkatan',
-        'idkelas'
     ];
 }
