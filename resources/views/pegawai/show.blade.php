@@ -8,16 +8,6 @@
 
     @include('layouts.AdminLTE.script')
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
-    <script type="text/javascript" href="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script type="text/javascript" href="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" href="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
-
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -112,7 +102,7 @@
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Pegawai</li>
+                                <li class="breadcrumb-item active">Siswa</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -126,17 +116,17 @@
                     <div class="row justify-content-center">
                         <div class="col-md-8">
                             <div class="card">
-                                <div class="card-header">{{ __('+ Tambah Data') }}</div>
+                                <div class="card-header">Edit Siswa</div>
 
                                 <div class="card-body">
-                                    <form method="POST" action="{{ route('pegawai.tambah.save') }}">
+                                    <form method="POST" action="{{ route('pegawai.edit') }}">
                                         @csrf
 
                                         <div class="row mb-3">
                                             <label for="nis" class="col-md-4 col-form-label text-md-end">{{ __('NIP') }}</label>
 
                                             <div class="col-md-6">
-                                                <input id="nip" type="text" class="form-control" name="nip" required>
+                                                <input id="nip" type="nis" class="form-control" name="nip" value="{{ $pegawai->nip }}" required>
                                             </div>
                                         </div>
 
@@ -144,22 +134,22 @@
                                             <label for="nama" class="col-md-4 col-form-label text-md-end">{{ __('Nama') }}</label>
 
                                             <div class="col-md-6">
-                                                <input id="nama" type="nama" class="form-control" name="nama" required>
+                                                <input id="nama" type="nama" class="form-control" name="nama" value="{{ $pegawai->nama }}" required>
                                             </div>
                                         </div>
-                                       
+
                                         <div class="row mb-3">
-                                            <label for="gelarakhir" class="col-md-4 col-form-label text-md-end">{{ __('Gelar') }}</label>
+                                            <label for="kelamin" class="col-md-4 col-form-label text-md-end">{{ __('Gelar') }}</label>
 
                                             <div class="col-md-6">
-                                                <input id="gelarakhir" type="text" class="form-control" name="gelarakhir" required>
+                                                <input id="gelarakhir" type="kelamin" class="form-control" name="gelarakhir" value="{{ $pegawai->gelarakhir }}" required>
                                             </div>
                                         </div>
-
+                                  
                                         <div class="row mb-0">
                                             <div class="col-md-8 offset-md-4">
                                                 <button type="submit" class="btn btn-primary">
-                                                    {{ __('Tambah') }}
+                                                    {{ __('Update') }}
                                                 </button>
 
                                             </div>

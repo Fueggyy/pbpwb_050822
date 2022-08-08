@@ -125,12 +125,14 @@
               <div class="card">
 
                 <div class="card-body">
-                  <a href="{{route ('pegawai.tambah') }}" class="btn btn-success mb-4">Tambah Data</a>
+                  <a href="{{route ('pegawai.tambah') }}" class="btn btn-success mb-4">+ Tambah Data</a>
                   <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                       <tr>
                         <th>NIP</th>
                         <th>NAMA</th>
+                        <th>GELAR</th>
+                        <th>ACTIONS</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -138,6 +140,17 @@
                       <tr>
                         <td>{{$i->nip}}</td>
                         <td>{{$i->nama}}</td>
+                        <td>{{$i->gelarakhir}}</td>
+                        <td>
+                          <div class="row justify-content-end">
+                            <div class="col-6">
+                              <a href="{{route ('pegawai.hapus', $i->nip)}}" class="btn btn-danger">Hapus</a>
+                            </div>
+                            <div class="col-6">
+                              <a href="{{route ('pegawai.show', $i->nip)}}" class="btn btn-warning">Edit</a>
+                            </div>
+                          </div>
+                        </td>
                       </tr>
                       @endforeach
                     </tbody>

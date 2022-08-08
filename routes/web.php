@@ -41,5 +41,10 @@ Route::controller(SiswaContoller::class)->group(function () {
 Route::controller(PegawaiController::class)->group(function () {
     Route::get('pegawai', 'index')->name('pegawai');
     Route::get('pegawai/tambah', 'create')->name('pegawai.tambah');
+    Route::get('pegawai/{nip}', 'destroy')->name('pegawai.hapus');
+    Route::get('pegawai/show/{nip}', 'show')->name('pegawai.show');
+    Route::post('pegawai/tambah/save', 'store')->name('pegawai.tambah.save');
+    Route::post('pegawai/edit', 'update')->name('pegawai.edit');
+
 });
 

@@ -39,7 +39,15 @@ class PegawaiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'nip' => 'required|string',
+            'nama' => 'required|string',
+            'gelarakhir' => 'required|string',
+        ]);
+
+        Pegawai::create($validatedData);
+
+        return to_route('pegawai')->with('success', 'tambah data berhasil');
     }
 
     /**
@@ -48,9 +56,16 @@ class PegawaiController extends Controller
      * @param  \App\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function show(Pegawai $pegawai)
+    public function show(Pegawai $pegawai, $nip)
     {
-        //
+        $pegawai = Pegawai::where('nip', $nip)->first();
+        
+        if (!$pegawai) {
+            return to_route('pegawai')->with('error', 'data tidak ditemukan');
+        }
+        return view('pegawai.show', [
+            "pegawai" => $pegawai,
+        ]);
     }
 
     /**
@@ -71,9 +86,21 @@ class PegawaiController extends Controller
      * @param  \App\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pegawai $pegawai)
+    public function update(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'nip' => 'required|string',
+            'nama' => 'required|string',
+            'gelarakhir' => 'required|string',
+        ]);
+
+        $pegawai = Pegawai::where('nip', $request->nip);
+        if (!$pegawai) {
+            return to_route('pegawai')->with('error', 'data tidak ditemukan');
+        }
+        $pegawai->update($validatedData);
+
+        return to_route('pegawai')->with('success', 'edit data berhasil');
     }
 
     /**
@@ -82,8 +109,11 @@ class PegawaiController extends Controller
      * @param  \App\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pegawai $pegawai)
+    public function destroy($nip)
     {
-        //
+        $pegawai = Pegawai::where('nip', $nip);
+        $pegawai->delete();
+
+        return to_route('pegawai');
     }
 }

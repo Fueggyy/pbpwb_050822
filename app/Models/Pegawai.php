@@ -10,9 +10,11 @@ class Pegawai extends Model
     use HasFactory;
 
     protected $table = 'pegawai';
- 
+    public $timestamps = false;
+
     protected $fillable = [
         'nip',
-        'nama'
+        'nama',
+        'gelarakhir'
     ];
 }

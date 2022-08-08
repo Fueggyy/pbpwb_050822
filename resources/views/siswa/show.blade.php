@@ -8,16 +8,6 @@
 
     @include('layouts.AdminLTE.script')
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
-    <script type="text/javascript" href="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script type="text/javascript" href="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" href="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
-
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -148,27 +138,24 @@
                                             </div>
                                         </div>
 
-                                        <div class="row mb-3">
+                                        <!-- <div class="row mb-3">
                                             <label for="kelamin" class="col-md-4 col-form-label text-md-end">{{ __('Kelamin') }}</label>
 
                                             <div class="col-md-6">
                                                 <input id="kelamin" type="kelamin" class="form-control" name="kelamin" value="{{ $siswa->kelamin }}" required>
                                             </div>
-                                        </div>
+                                        </div> -->
 
-                                        <!-- <div class="row mb-3">
-                                            <label for="pengirim" class="col-md-4 col-form-label text-md-end">{{ __('Pengirim') }}</label>
-
+                                        <div class="row mb-3">
+                                            <label for="pengirim" class="col-md-4 col-form-label text-md-end">{{ __('Kelamin') }}</label>
                                             <div class="col-md-6">
-                                                <select name="pengirim" id="pengirim" class="form-control">
-                                                    <option value="">{{ __('--PILIH INSTANSI--') }}</option>
-                                                    @foreach($getSiswa as $item)
-                                                    <option value="{{ $item->nis }}" {{ $siswa->kelamin == $item->kelamin ? 'selected' : '' }} >{{ $item->kelamin }}</option>
-                                                    @endforeach
+                                                <select name="kelamin" id="kelamin" class="form-control">
+                                                    <option value="$siswa->kelamin">{{ $siswa->kelamin }}</option>
+                                                    <option value="L">{{ __('L') }}</option>
+                                                    <option value="P">{{ __('P') }}</option>
                                                 </select>
                                             </div>
-
-                                        </div> -->
+                                        </div>
                                   
                                         <div class="row mb-0">
                                             <div class="col-md-8 offset-md-4">
