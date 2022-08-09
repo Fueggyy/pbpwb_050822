@@ -29,22 +29,9 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::controller(SiswaContoller::class)->group(function () {
-    Route::get('siswa', 'index')->name('siswa');
-    Route::get('siswa/tambah', 'create')->name('siswa.tambah');
-    Route::get('siswa/{nis}', 'destroy')->name('siswa.hapus');
-    Route::get('siswa/show/{nis}', 'show')->name('siswa.show');
-    Route::post('siswa/tambah/save', 'store')->name('siswa.tambah.save');
-    Route::post('siswa/edit', 'update')->name('siswa.edit');
+Route::name('dashboard.')->prefix('dashboard')->group(function () {
+    Route::get('/', [SiswaContoller::class, 'index'])->name('index');
+
+    Route::resource('siswa', SiswaContoller::class);
+    Route::resource('pegawai', PegawaiController::class);
 });
-
-Route::controller(PegawaiController::class)->group(function () {
-    Route::get('pegawai', 'index')->name('pegawai');
-    Route::get('pegawai/tambah', 'create')->name('pegawai.tambah');
-    Route::get('pegawai/{nip}', 'destroy')->name('pegawai.hapus');
-    Route::get('pegawai/show/{nip}', 'show')->name('pegawai.show');
-    Route::post('pegawai/tambah/save', 'store')->name('pegawai.tambah.save');
-    Route::post('pegawai/edit', 'update')->name('pegawai.edit');
-
-});
-

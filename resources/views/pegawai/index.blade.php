@@ -76,13 +76,13 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{route ('siswa')}}" class="nav-link">
+                  <a href="{{route ('dashboard.siswa.index')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Siswa</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{route ('pegawai')}}" class="nav-link active">
+                  <a href="{{route ('dashboard.pegawai.index')}}" class="nav-link active">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Pegawai</p>
                   </a>
@@ -125,7 +125,7 @@
               <div class="card">
 
                 <div class="card-body">
-                  <a href="{{route ('pegawai.tambah') }}" class="btn btn-success mb-4">+ Tambah Data</a>
+                  <a href="{{route ('dashboard.pegawai.create') }}" class="btn btn-success mb-4">+ Tambah Data</a>
                   <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                       <tr>
@@ -144,10 +144,14 @@
                         <td>
                           <div class="row justify-content-end">
                             <div class="col-6">
-                              <a href="{{route ('pegawai.hapus', $i->nip)}}" class="btn btn-danger">Hapus</a>
+                              <form action="{{route ('dashboard.pegawai.destroy', $i->nip)}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                              </form>
                             </div>
                             <div class="col-6">
-                              <a href="{{route ('pegawai.show', $i->nip)}}" class="btn btn-warning">Edit</a>
+                              <a href="{{route ('dashboard.pegawai.edit', $i->nip)}}" class="btn btn-warning">Edit</a>
                             </div>
                           </div>
                         </td>

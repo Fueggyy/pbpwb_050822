@@ -55,36 +55,7 @@
                 </div>
 
                 <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-                        <li class="nav-item menu-open">
-                            <a href="#" class="nav-link active">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Dashboard
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{route ('siswa')}}" class="nav-link active">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Siswa</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{route ('pegawai')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Pegawai</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                    </ul>
-                </nav>
+                @include('layouts.AdminLTE.sidebar')
                 <!-- /.sidebar-menu -->
             </div>
             <!-- /.sidebar -->
@@ -119,8 +90,9 @@
                                 <div class="card-header">Edit Siswa</div>
 
                                 <div class="card-body">
-                                    <form method="POST" action="{{ route('siswa.edit') }}">
+                                    <form action="{{route('dashboard.siswa.update', $siswa->nis)}}" method="POST">
                                         @csrf
+                                        @method('PUT')
 
                                         <div class="row mb-3">
                                             <label for="nis" class="col-md-4 col-form-label text-md-end">{{ __('NIS') }}</label>
@@ -138,25 +110,17 @@
                                             </div>
                                         </div>
 
-                                        <!-- <div class="row mb-3">
-                                            <label for="kelamin" class="col-md-4 col-form-label text-md-end">{{ __('Kelamin') }}</label>
-
-                                            <div class="col-md-6">
-                                                <input id="kelamin" type="kelamin" class="form-control" name="kelamin" value="{{ $siswa->kelamin }}" required>
-                                            </div>
-                                        </div> -->
-
                                         <div class="row mb-3">
                                             <label for="pengirim" class="col-md-4 col-form-label text-md-end">{{ __('Kelamin') }}</label>
                                             <div class="col-md-6">
                                                 <select name="kelamin" id="kelamin" class="form-control">
-                                                    <option value="$siswa->kelamin">{{ $siswa->kelamin }}</option>
+                                                    <option value="{{ $siswa->kelamin }}">{{ $siswa->kelamin }}</option>
                                                     <option value="L">{{ __('L') }}</option>
                                                     <option value="P">{{ __('P') }}</option>
                                                 </select>
                                             </div>
                                         </div>
-                                  
+
                                         <div class="row mb-0">
                                             <div class="col-md-8 offset-md-4">
                                                 <button type="submit" class="btn btn-primary">

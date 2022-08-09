@@ -65,36 +65,7 @@
         </div>
 
         <!-- Sidebar Menu -->
-        <nav class="mt-2">
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-            <li class="nav-item menu-open">
-              <a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                  Dashboard
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{route ('siswa')}}" class="nav-link active">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Siswa</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{route ('pegawai')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Pegawai</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-          </ul>
-        </nav>
+        @include('layouts.AdminLTE.sidebar')
         <!-- /.sidebar-menu -->
       </div>
       <!-- /.sidebar -->
@@ -127,7 +98,7 @@
             <div class="col-md-8 w-100">
               <div class="card">
                 <div class="card-body">
-                  <a href="{{route ('siswa.tambah') }}" class="btn btn-success mb-4">Tambah Data</a>
+                  <a href="{{route ('dashboard.siswa.create') }}" class="btn btn-success mb-4">Tambah Data</a>
                   <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                       <tr>
@@ -146,10 +117,14 @@
                         <td>
                           <div class="row justify-content-end">
                             <div class="col-6">
-                              <a href="{{route ('siswa.hapus', $i->nis)}}" class="btn btn-danger">Hapus</a>
+                              <form action="{{route ('dashboard.siswa.destroy', $i->nis)}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                              </form>
                             </div>
                             <div class="col-6">
-                              <a href="{{route ('siswa.show', $i->nis)}}" class="btn btn-warning">Edit</a>
+                              <a href="{{route ('dashboard.siswa.edit', $i->nis)}}" class="btn btn-warning">Edit</a>
                             </div>
                           </div>
                         </td>

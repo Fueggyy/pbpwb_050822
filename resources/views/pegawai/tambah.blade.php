@@ -85,7 +85,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route ('pegawai')}}" class="nav-link active">
+                                    <a href="{{route ('dashboard.index')}}" class="nav-link active">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Pegawai</p>
                                     </a>
@@ -126,10 +126,10 @@
                     <div class="row justify-content-center">
                         <div class="col-md-8">
                             <div class="card">
-                                <div class="card-header">{{ __('+ Tambah Data') }}</div>
+                                <div class="card-header">{{ __('Tambah Data') }}</div>
 
                                 <div class="card-body">
-                                    <form method="POST" action="{{ route('pegawai.tambah.save') }}">
+                                    <form method="POST" action="{{ route('dashboard.pegawai.store') }}">
                                         @csrf
 
                                         <div class="row mb-3">

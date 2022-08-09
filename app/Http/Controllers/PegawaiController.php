@@ -15,7 +15,6 @@ class PegawaiController extends Controller
     public function index()
     {
         $pegawai = Pegawai::get();
-
         return view('pegawai.index', [
             "pegawai" => $pegawai,
         ]);
@@ -44,24 +43,33 @@ class PegawaiController extends Controller
             'nama' => 'required|string',
             'gelarakhir' => 'required|string',
         ]);
-
         Pegawai::create($validatedData);
 
-        return to_route('pegawai')->with('success', 'tambah data berhasil');
+        return to_route('dashboard.index')->with('success', 'tambah data berhasil');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Pegawai  $pegawai
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Pegawai $pegawai, $nip)
+    public function show($nip)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($nip)
     {
         $pegawai = Pegawai::where('nip', $nip)->first();
-        
         if (!$pegawai) {
-            return to_route('pegawai')->with('error', 'data tidak ditemukan');
+            return to_route('dashboard.index')->with('error', 'data tidak ditemukan');
         }
         return view('pegawai.show', [
             "pegawai" => $pegawai,
@@ -69,51 +77,39 @@ class PegawaiController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Pegawai  $pegawai
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Pegawai $pegawai)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Pegawai  $pegawai
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $nip)
     {
         $validatedData = $request->validate([
             'nip' => 'required|string',
             'nama' => 'required|string',
             'gelarakhir' => 'required|string',
         ]);
-
-        $pegawai = Pegawai::where('nip', $request->nip);
-        if (!$pegawai) {
-            return to_route('pegawai')->with('error', 'data tidak ditemukan');
-        }
-        $pegawai->update($validatedData);
-
-        return to_route('pegawai')->with('success', 'edit data berhasil');
+        Pegawai::where('nip', $nip)->update($validatedData);
+        return to_route('dashboard.index')->with('success', 'update data berhasil');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Pegawai  $pegawai
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($nip)
     {
         $pegawai = Pegawai::where('nip', $nip);
+
+        if (!$pegawai) {
+            return to_route('dashboard.index')->with('error', 'data tidak ditemukan');
+        }
+
         $pegawai->delete();
 
-        return to_route('pegawai');
+        return to_route('dashboard.index')->with('success', 'hapus data berhasil');
     }
 }
