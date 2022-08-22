@@ -10,6 +10,9 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+  <script type="text/javascript" href="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script type="text/javascript" href="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" href="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
 
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
@@ -55,36 +58,7 @@
         </div>
 
         <!-- Sidebar Menu -->
-        <nav class="mt-2">
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-            <li class="nav-item menu-open">
-              <a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                  Dashboard
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{route ('dashboard.siswa.index')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Siswa</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{route ('dashboard.pegawai.index')}}" class="nav-link active">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Pegawai</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-          </ul>
-        </nav>
+        @include('layouts.AdminLTE.sidebar')
         <!-- /.sidebar-menu -->
       </div>
       <!-- /.sidebar -->
@@ -102,7 +76,7 @@
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">Pegawai</li>
+                <li class="breadcrumb-item active">Siswa</li>
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -112,53 +86,8 @@
 
       <!-- Main content -->
       <section class="content">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-md-8 w-100">
-              <div class="card">
-
-                <div class="card-body">
-                  <a href="{{route ('dashboard.pegawai.create') }}" class="btn btn-success mb-4">+ Tambah Data</a>
-                  <table id="example" class="table table-striped table-bordered" style="width:100%">
-                    <thead>
-                      <tr>
-                        <th>NIP</th>
-                        <th>NAMA</th>
-                        <th>GELAR</th>
-                        <th>ACTIONS</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      @foreach ($pegawai as $i)
-                      <tr>
-                        <td>{{$i->nip}}</td>
-                        <td>{{$i->nama}}</td>
-                        <td>{{$i->gelarakhir}}</td>
-                        <td>
-                          <div class="row justify-content-end">
-                            <div class="col-6">
-                              <form action="{{route ('dashboard.pegawai.destroy', $i->nip)}}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                              </form>
-                            </div>
-                            <div class="col-6">
-                              <a href="{{route ('dashboard.pegawai.edit', $i->nip)}}" class="btn btn-warning">Edit</a>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      @endforeach
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
-    </section>
+        @yield('content')
+        </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
