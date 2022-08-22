@@ -79,12 +79,20 @@
                     <div class="row justify-content-center">
                         <div class="col-md-8">
                             <div class="card">
-                                <div class="card-header">Edit Siswa</div>
+                                <div class="card-header">Detail Siswa <b>{{$siswa->nis}}</b> </div>
 
                                 <div class="card-body">
-                                    <form action="{{route('dashboard.siswa.update', $siswa->nis)}}" method="POST">
+                                    <form action="{{route('dashboard.siswa.index')}}" method="GET">
                                         @csrf
                                         @method('PUT')
+
+                                        <div class="row mb-3">
+                                            <label for="nama" class="col-md-4 col-form-label text-md-end">{{ __('Nama') }}</label>
+
+                                            <div class="col-md-6">
+                                                <input id="nama" type="nama" class="form-control" name="nama" value="{{ $siswa->nama }}" readonly>
+                                            </div>
+                                        </div>
 
                                         <div class="row mb-3">
                                             <label for="nis" class="col-md-4 col-form-label text-md-end">{{ __('NIS') }}</label>
@@ -95,28 +103,39 @@
                                         </div>
 
                                         <div class="row mb-3">
-                                            <label for="nama" class="col-md-4 col-form-label text-md-end">{{ __('Nama') }}</label>
+                                            <label for="nis" class="col-md-4 col-form-label text-md-end">{{ __('NISN') }}</label>
 
                                             <div class="col-md-6">
-                                                <input id="nama" type="nama" class="form-control" name="nama" value="{{ $siswa->nama }}" required>
+                                                <input id="nisn" type="text" class="form-control" name="nisn" value="{{ $siswa->nisn }}" readonly>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <label for="nis" class="col-md-4 col-form-label text-md-end">{{ __('NIK') }}</label>
+
+                                            <div class="col-md-6">
+                                                <input id="nik" type="text" class="form-control" name="nik" value="{{ $siswa->nik }}" readonly>
                                             </div>
                                         </div>
 
                                         <div class="row mb-3">
                                             <label for="pengirim" class="col-md-4 col-form-label text-md-end">{{ __('Kelamin') }}</label>
                                             <div class="col-md-6">
-                                                <select name="kelamin" id="kelamin" class="form-control">
-                                                    <option value="{{ $siswa->kelamin }}">{{ $siswa->kelamin }}</option>
-                                                    <option value="L">{{ __('L') }}</option>
-                                                    <option value="P">{{ __('P') }}</option>
-                                                </select>
+                                                <input id="kelamin" type="text" class="form-control" name="kelamin" value="{{ $siswa->kelamin }}" readonly>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <label for="pengirim" class="col-md-4 col-form-label text-md-end">{{ __('Tahun Masuk') }}</label>
+                                            <div class="col-md-6">
+                                                <input id="kelamin" type="text" class="form-control" name="tahunmasuk" value="{{ $siswa->tahunmasuk }}" readonly>
                                             </div>
                                         </div>
 
                                         <div class="row mb-0">
                                             <div class="col-md-8 offset-md-4">
                                                 <button type="submit" class="btn btn-primary">
-                                                    {{ __('Update') }}
+                                                    {{ __('Back') }}
                                                 </button>
 
                                             </div>

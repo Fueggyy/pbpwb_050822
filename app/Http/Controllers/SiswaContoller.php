@@ -55,9 +55,12 @@ class SiswaContoller extends Controller
      * @param  \App\Models\Siswa  $siswa
      * @return \Illuminate\Http\Response
      */
-    public function show(Siswa $siswa)
+    public function show($nis)
     {
-        //
+        $siswa = Siswa::where('nis', $nis)->first();
+        return view('siswa.details', [
+            "siswa" => $siswa,
+        ]);
     }
 
     /**
@@ -84,7 +87,6 @@ class SiswaContoller extends Controller
     public function update(Request $request, $nis)
     {
         $validatedData = $request->validate([
-            'nis' => 'required|string',
             'nama' => 'required|string',
             'kelamin' => 'required|string',
         ]);

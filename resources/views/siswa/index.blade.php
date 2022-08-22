@@ -43,14 +43,7 @@
       <!-- Sidebar -->
       <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-          <div class="image">
-            <img src="{{asset('AdminLTE/dist')}}/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-          </div>
-          <div class="info">
-            <a href="#" class="d-block">Alexander Pierce</a>
-          </div>
-        </div>
+        @include('layouts.AdminLTE.user')
 
         <!-- SidebarSearch Form -->
         <div class="form-inline">
@@ -102,6 +95,7 @@
                   <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                       <tr>
+                        <th>DETAIL</th>
                         <th>NIS</th>
                         <th>NAMA</th>
                         <th>KELAMIN</th>
@@ -111,20 +105,31 @@
                     <tbody>
                       @foreach ($siswa as $i)
                       <tr>
+                        <td>
+                          <div class="col">
+                            <a href="{{route ('dashboard.siswa.show', $i->nis)}}" class="btn btn-primary">
+                              <i class="fas fa-solid fa-pen"></i>
+                            </a>
+                          </div>
+                        </td>
                         <td>{{$i->nis}}</td>
                         <td>{{$i->nama}}</td>
                         <td>{{$i->kelamin}}</td>
                         <td>
-                          <div class="row justify-content-end">
-                            <div class="col-6">
+                          <div class="row">
+                            <div class="col-5">
                               <form action="{{route ('dashboard.siswa.destroy', $i->nis)}}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <button type="submit" class="btn btn-danger">
+                                  <i class="fas fa-solid fa-trash"></i>
+                                </button>
                               </form>
                             </div>
-                            <div class="col-6">
-                              <a href="{{route ('dashboard.siswa.edit', $i->nis)}}" class="btn btn-warning">Edit</a>
+                            <div class="col-5">
+                              <a href="{{route ('dashboard.siswa.edit', $i->nis)}}" class="btn btn-warning">
+                                <i class="fas fa-solid fa-pen"></i>
+                              </a>
                             </div>
                           </div>
                         </td>

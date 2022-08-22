@@ -79,13 +79,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{route ('siswa')}}" class="nav-link">
+                                    <a href="{{route ('dashboard.siswa.index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Siswa</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route ('dashboard.index')}}" class="nav-link active">
+                                    <a href="{{route ('dashboard.pegawai.index')}}" class="nav-link active">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Pegawai</p>
                                     </a>
