@@ -23,6 +23,12 @@
                         <p>Pegawai</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route ('dashboard.kartu.index')}}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Kartu Pelajar</p>
+                    </a>
+                </li>
             </ul>
         </li>
 

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiswaContoller;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\KartuPelajarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +35,5 @@ Route::name('dashboard.')->prefix('dashboard')->group(function () {
 
     Route::resource('siswa', SiswaContoller::class);
     Route::resource('pegawai', PegawaiController::class);
+    Route::resource('kartu', KartuPelajarController::class);
 });

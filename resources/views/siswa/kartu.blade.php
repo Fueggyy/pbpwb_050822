@@ -10,6 +10,9 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+  <script type="text/javascript" href="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script type="text/javascript" href="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" href="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
 
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
@@ -55,54 +58,24 @@
         </div>
 
         <!-- Sidebar Menu -->
-        <nav class="mt-2">
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-            <li class="nav-item menu-open">
-              <a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                  Dashboard
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{route ('dashboard.siswa.index')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Siswa</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{route ('dashboard.pegawai.index')}}" class="nav-link active">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Pegawai</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-          </ul>
-        </nav>
+        @include('layouts.AdminLTE.sidebar')
         <!-- /.sidebar-menu -->
       </div>
       <!-- /.sidebar -->
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="content-wrapper mb-5">
       <!-- Content Header (Page header) -->
       <div class="content-header">
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Dashboard</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">Pegawai</li>
+                <li class="breadcrumb-item active">Kartu Pelajar</li>
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -115,45 +88,51 @@
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-md-8 w-100">
-              <div class="card">
-
-                <div class="card-body">
-                  <a href="{{route ('dashboard.pegawai.create') }}" class="btn btn-success mb-4">+ Tambah Data</a>
-                  <table id="example" class="table table-striped table-bordered" style="width:100%">
-                    <thead>
-                      <tr>
-                        <th>NIP</th>
-                        <th>NAMA</th>
-                        <th>GELAR</th>
-                        <th>ACTIONS</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      @foreach ($pegawai as $i)
-                      <tr>
-                        <td>{{$i->nip}}</td>
-                        <td>{{$i->nama}}</td>
-                        <td>{{$i->gelarakhir}}</td>
-                        <td>
-                          <div class="row justify-content-end">
-                            <div class="col-6">
-                              <form action="{{route ('dashboard.pegawai.destroy', $i->nip)}}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                              </form>
-                            </div>
-                            <div class="col-6">
-                              <a href="{{route ('dashboard.pegawai.edit', $i->nip)}}" class="btn btn-warning">Edit</a>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      @endforeach
-                    </tbody>
-                  </table>
+                <div class="card">
+                <div class="card-header ">
+                <div class="row">
+                    <div class="col-2">
+                        <img src="{{asset('AdminLTE/dist')}}/img/disdik.png" alt="" style="width:150px; height:120px">
+                    </div>
+                    <div class="col-8 text-center"><br><br>
+                        <h1>Kartu Pelajar<br>SMKN 11 Bandung</h1>
+                    </div>
+                    <div class="col-2">
+                        <img src="{{asset('AdminLTE/dist')}}/img/logo.jpg" alt="" style="width:100px; height:130px;">
+                    </div>
                 </div>
-              </div>
+            </div>
+                    <div class="row g-0 mt-2">
+                        <div class="col-md-4">
+                            <img src="{{asset('AdminLTE/dist')}}/img/sparrow.jpg" class="img-fluid rounded-circle px-4" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                            @foreach ($siswa as $i)
+                                <h5 class="card-title"><b>{{ $i->nama }}</b></h5>
+                                <p class="card-text">NIS : {{ $i->nis }}</p>
+                                <p class="card-text">NISN : {{ $i->nisn }}</p>
+                                <p class="card-text">TTL : {{ $i->tgllahir }}</p>
+                                <p class="card-text">JK : {{ $i->kelamin }}</p>
+                                <p class="card-text">AGAMA : {{ $i->agama }}</p>
+                                <p class="card-text">Alamat : {{ $i->alamatsiswa }}</p>
+                            @endforeach
+                            </div>
+                            <div class="row mt-5">
+                                <div class="col" style="margin-left:200px;">
+                                    <p class="text-center">Bandung, 28 April 2005</p>
+                                    <p class="text-center">Kepala Sekolah</p>
+                                    <br><br>
+                                    <p class="text-center">Ino Soprano mPd</p>
+                                    <p class="text-center">NIP: 76675665456</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    {{ $siswa->links() }}   
+                </div>
             </div>
           </div>
         </div>
@@ -162,7 +141,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
+  <footer class="main-footer mt-5">
     <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">

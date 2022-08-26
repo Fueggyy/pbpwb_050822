@@ -91,7 +91,7 @@ class PegawaiController extends Controller
             'gelarakhir' => 'required|string',
         ]);
         Pegawai::where('nip', $nip)->update($validatedData);
-        return to_route('dashboard.index')->with('success', 'update data berhasil');
+        return to_route('dashboard.pegawai.index')->with('success', 'update data berhasil');
     }
 
     /**
