@@ -65,18 +65,17 @@
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="content-wrapper mb-5">
       <!-- Content Header (Page header) -->
       <div class="content-header">
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Dashboard</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">Siswa</li>
+                <li class="breadcrumb-item active">Kartu Pelajar</li>
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -89,62 +88,51 @@
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-md-8 w-100">
-              <div class="card">
-                <div class="card-body">
-                  <a href="{{route ('dashboard.siswa.create') }}" class="btn btn-success mb-4">Tambah Data</a>
-                  <table id="example" class="table table-striped table-bordered" style="width:100%">
-                    <thead>
-                      <tr>
-                        <th>DETAIL</th>
-                        <th>NIS</th>
-                        <th>NAMA</th>
-                        <th>KELAMIN</th>
-                        <th>ACTIONS</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      @foreach ($siswa as $i)
-                      <tr>
-                        <td>
-                          <div class="row">
-                            <div class="col-5">
-                              <a href="{{route ('dashboard.siswa.show', $i->nis)}}" class="btn btn-primary">
-                                <i class="fas fa-solid fa-pen"></i>
-                              </a>
-                            </div>
-                          <div class="col">
-                            <a href="{{route ('dashboard.siswa.show', $i->nis)}}" class="btn btn-primary">
-                              <i class="fas fa-solid fa-pen"></i>
-                            </a>
-                          </div>
-                        </td>
-                        <td>{{$i->nis}}</td>
-                        <td>{{$i->nama}}</td>
-                        <td>{{$i->kelamin}}</td>
-                        <td>
-                          <div class="row">
-                            <div class="col-5">
-                              <form action="{{route ('dashboard.siswa.destroy', $i->nis)}}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">
-                                  <i class="fas fa-solid fa-trash"></i>
-                                </button>
-                              </form>
-                            </div>
-                            <div class="col-5">
-                              <a href="{{route ('dashboard.siswa.edit', $i->nis)}}" class="btn btn-warning">
-                                <i class="fas fa-solid fa-pen"></i>
-                              </a>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      @endforeach
-                    </tbody>
-                  </table>
+                <div class="card">
+                <div class="card-header ">
+                <div class="row">
+                    <div class="col-2">
+                        <img src="{{asset('AdminLTE/dist')}}/img/disdik.png" alt="" style="width:150px; height:120px">
+                    </div>
+                    <div class="col-8 text-center"><br><br>
+                        <h1>Kartu Pelajar<br>SMKN 11 Bandung</h1>
+                    </div>
+                    <div class="col-2">
+                        <img src="{{asset('AdminLTE/dist')}}/img/logo.jpg" alt="" style="width:100px; height:130px;">
+                    </div>
                 </div>
-              </div>
+            </div>
+                    <div class="row g-0 mt-2">
+                        <div class="col-md-4">
+                            <img src="{{asset('AdminLTE/dist')}}/img/sparrow.jpg" class="img-fluid rounded-circle px-4" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                            @foreach ($siswa as $i)
+                                <h5 class="card-title"><b>{{ $i->nama }}</b></h5>
+                                <p class="card-text">NIS : {{ $i->nis }}</p>
+                                <p class="card-text">NISN : {{ $i->nisn }}</p>
+                                <p class="card-text">TTL : {{ $i->tgllahir }}</p>
+                                <p class="card-text">JK : {{ $i->kelamin }}</p>
+                                <p class="card-text">AGAMA : {{ $i->agama }}</p>
+                                <p class="card-text">Alamat : {{ $i->alamatsiswa }}</p>
+                            @endforeach
+                            </div>
+                            <div class="row mt-5">
+                                <div class="col" style="margin-left:200px;">
+                                    <p class="text-center">Bandung, 28 April 2005</p>
+                                    <p class="text-center">Kepala Sekolah</p>
+                                    <br><br>
+                                    <p class="text-center">Ino Soprano mPd</p>
+                                    <p class="text-center">NIP: 76675665456</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    {{ $siswa->links() }}   
+                </div>
             </div>
           </div>
         </div>
@@ -153,7 +141,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
+  <footer class="main-footer mt-5">
     <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
