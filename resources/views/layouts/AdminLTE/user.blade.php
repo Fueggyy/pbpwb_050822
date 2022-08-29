@@ -3,6 +3,6 @@
         <img src="{{asset('AdminLTE/dist')}}/img/tommy.jpg" class="img-circle elevation-2" alt="User Image">
     </div>
     <div class="info">
-        <a href="#" class="d-block">Tommy</a>
+        <a href="#" class="d-block">{{ Auth::user()->name }}</a>
     </div>
 </div>

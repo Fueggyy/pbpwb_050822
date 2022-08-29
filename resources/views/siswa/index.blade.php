@@ -112,10 +112,6 @@
                                 <i class="fas fa-solid fa-pen"></i>
                               </a>
                             </div>
-                          <div class="col">
-                            <a href="{{route ('dashboard.siswa.show', $i->nis)}}" class="btn btn-primary">
-                              <i class="fas fa-solid fa-pen"></i>
-                            </a>
                           </div>
                         </td>
                         <td>{{$i->nis}}</td>
