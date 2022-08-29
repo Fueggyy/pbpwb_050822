@@ -15,10 +15,7 @@ use App\Http\Controllers\KartuPelajarController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [SiswaContoller::class, 'index'])->name('index')->middleware('auth:sanctum');
 
 Route::middleware([
     'auth:sanctum',
@@ -31,9 +28,8 @@ Route::middleware([
 });
 
 Route::name('dashboard.')->prefix('dashboard')->group(function () {
-    Route::get('/', [SiswaContoller::class, 'index'])->name('index');
 
-    Route::resource('siswa', SiswaContoller::class);
-    Route::resource('pegawai', PegawaiController::class);
-    Route::resource('kartu', KartuPelajarController::class);
+    Route::resource('siswa', SiswaContoller::class)->middleware('auth:sanctum');
+    Route::resource('pegawai', PegawaiController::class)->middleware('auth:sanctum');
+    Route::resource('kartu', KartuPelajarController::class)->middleware('auth:sanctum');
 });
